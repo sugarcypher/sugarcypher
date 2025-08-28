@@ -1,0 +1,32 @@
+version: 2
+updates:
+  # Keep npm (Node.js/Expo/React Native) dependencies up to date
+  - package-ecosystem: "npm"
+    directory: "/" # Root of your repo (package.json is here)
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps"
+    open-pull-requests-limit: 10
+    groups:
+      expo-dependencies:
+        patterns:
+          - "expo*"
+          - "react*"
+          - "@expo/*"
+          - "@react-native*"
+      dev-dependencies:
+        patterns:
+          - "@types/*"
+          - "eslint*"
+          - "jest*"
+          - "babel*"
+
+  # Optional: keep GitHub Actions up to date if you use them
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+
