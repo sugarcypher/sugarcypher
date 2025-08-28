@@ -48,10 +48,6 @@ export default function RootLayout() {
     }
   }, [appIsReady]);
 
-  if (!appIsReady) {
-    return null;
-  }
-
   return (
     <ShoppingStoreProvider>
       <GamificationProvider>
