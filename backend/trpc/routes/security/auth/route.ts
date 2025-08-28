@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { publicProcedure } from '../../../create-context';
 import { TRPCError } from '@trpc/server';
+import * as crypto from 'crypto';
 
 // Create protectedProcedure as alias for now
 const protectedProcedure = publicProcedure;
@@ -90,7 +91,8 @@ function checkRateLimit(identifier: string): boolean {
 // Helper function to generate secure session ID
 function generateSessionId(): string {
   const timestamp = Date.now().toString();
-  const random = Math.random().toString(36).substring(2);
+  // Use crypto.randomBytes for cryptographically secure randomness
+  const random = crypto.randomBytes(16).toString('base64');
   return Buffer.from(timestamp + random).toString('base64');
 }
 
